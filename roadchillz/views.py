@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from roadchillz.models import Restaurant, Category, Item
 
 def index(request):
-    return HttpResponse("Hello world")
+    return render(request, 'roadchillz/index.html')
 
 
 # Create your views here.

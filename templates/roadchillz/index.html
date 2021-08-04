@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'roadchillz/styles.css' %}"
+		/>
+		<title>RoadChillz</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<div>
+					<a href="{% url 'roadchillz:index' %}">
+						<img src="{% static 'images/logo.jpg' %}" alt="RoadChillz Logo" />
+					</a>
+				</div>
+				<ul>
+					<li><a href="">Sign Up</a></li>
+					<li><a href="">Login</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			<section class="hero-section"></section>
+			<section class="content-section"></section>
+		</main>
+	</body>
+</html>
