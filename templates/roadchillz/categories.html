@@ -1,63 +1,28 @@
-<!DOCTYPE html>
+{% extends 'roadchillz/base.html' %}
 {% load static %}
 
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			rel="stylesheet"
-			type="text/css"
-			href="{% static 'roadchillz/styles.css' %}"
-		/>
-		<title>RoadChillz | Categories</title>
-	</head>
-	<body>
-		<header>
-			<nav>
-				<div>
-					<a href="{% url 'roadchillz:index' %}">
-						<img src="{% static 'images/logo.jpg' %}" alt="RoadChillz Logo" />
-					</a>
-				</div>
-				<ul>
-					<li><a href="{% url 'roadchillz:signup' %}">Sign Up</a></li>
-					<li><a href="{% url 'roadchillz:login' %}">Login</a></li>
-				</ul>
-			</nav>
-		</header>
+{% block title_block %}
+	RoadChillz | Categories
+{% endblock %}
 
-		<main class="roadchillz__container">
-			<section class="hero">
-				<div class="hero__content">
-					<h1>Connecting you to your next best meal</h1>
-					<p>
-						Introducing Roadchillz. Wherever you go, we <br />
-						have a restaurant for you.
-					</p>
-				</div>
-			</section>
+{% block body_block %}
+	<section class="restaurants">
+		<div class="restaurants__heading">
+			<h2>Categories</h2>
+			<a href="{% url 'roadchillz:index' %}">View Restaurants →</a>
+		</div>
 
-			<section class="restaurants">
-				<div class="restaurants__heading">
-					<h2>Categories</h2>
-					<a href="{% url 'roadchillz:index' %}">View Restaurants →</a>
-				</div>
-
-				<div class="restaurants__content">
-					<div class="restaurants__item">
-						<a href="">
-							<img src="{% static 'images/hero.jpg' %}" alt="test" />
-							<div class="restaurants__item__details">
-								<div>
-									<p class="restaurants__item-name">Mexican Restaurant Name</p>
-								</div>
-							</div>
-						</a>
+		<div class="restaurants__content">
+			<div class="restaurants__item">
+				<a href="{% url 'roadchillz:category_restaurants' %}">
+					<img src="{% static 'images/hero.jpg' %}" alt="test" />
+					<div class="restaurants__item__details">
+						<div>
+							<p class="restaurants__item-name">Mexican Restaurant Name</p>
+						</div>
 					</div>
-				</div>
-			</section>
-		</main>
-	</body>
-</html>
+				</a>
+			</div>
+		</div>
+	</section>
+{% endblock %}

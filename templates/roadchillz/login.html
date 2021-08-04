@@ -1,66 +1,34 @@
-<!DOCTYPE html>
+{% extends 'roadchillz/auth-base.html' %}
 {% load static %}
 
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			rel="stylesheet"
-			type="text/css"
-			href="{% static 'roadchillz/styles.css' %}"
-		/>
+{% block title_block %}
+	Login
+{% endblock %}
 
-		<title>Roadchillz | Login</title>
-	</head>
-	<body>
-		<main>
-			<section class="auth__wrapper">
-				<div class="auth__form-container">
-					<img
-						src="{% static 'images/logo.jpg' %}"
-						alt="RoadChillz Logo"
-						class="logo__wrapper"
-					/>
+{% block body_block %}
+	<h2 class="auth__form-title">Login</h2>
+	<p class="auth__form-description">Welcome back to Roadchillz</p>
 
-					<h2 class="auth__form-title">Login</h2>
-					<p class="auth__form-description">Welcome back to Roadchillz</p>
+	<div class="auth__form-wrapper">
+		<div class="input__box">
+			<div class="input__wrapper">
+				<input type="text" name="email" placeholder=" " class="form__input" />
+				<label class="form__label" htmlFor="email">Email Address</label>
+			</div>
+		</div>
 
-					<div class="auth__form-wrapper">
-						<div class="input__box">
-							<div class="input__wrapper">
-								<input
-									type="text"
-									name="email"
-									placeholder=" "
-									class="form__input"
-								/>
-								<label class="form__label" htmlFor="email">Email Address</label>
-							</div>
-						</div>
+		<div class="input__box">
+			<div class="input__wrapper">
+				<input type="text" placeholder=" " name="password" class="form__input" />
+				<label class="form__label" htmlFor="password">Password</label>
+			</div>
+		</div>
 
-						<div class="input__box">
-							<div class="input__wrapper">
-								<input
-									type="text"
-									placeholder=" "
-									name="password"
-									class="form__input"
-								/>
-								<label class="form__label" htmlFor="password">Password</label>
-							</div>
-						</div>
+		<button class="button">Login</button>
+	</div>
 
-						<button class="button">Login</button>
-					</div>
-
-					<div class="signup">
-						Don’t have an account?
-						<a href="{% url 'roadchillz:signup' %}">Sign Up</a>
-					</div>
-				</div>
-			</section>
-		</main>
-	</body>
-</html>
+	<div class="signup">
+		Don’t have an account?
+		<a href="{% url 'roadchillz:signup' %}">Sign Up</a>
+	</div>
+{% endblock %}
