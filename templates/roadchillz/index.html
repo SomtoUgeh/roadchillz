@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'roadchillz/styles.css' %}"
+		/>
+		<title>RoadChillz</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<div>
+					<a href="{% url 'roadchillz:index' %}">
+						<img src="{% static 'images/logo.jpg' %}" alt="RoadChillz Logo" />
+					</a>
+				</div>
+				<ul>
+					<li><a href="">Sign Up</a></li>
+					<li><a href="">Login</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			<section class="hero">
+				<div class="hero__content">
+					<h1>Connecting you to your next best meal</h1>
+					<p>
+						Introducing Roadchillz. Wherever you go, we <br />
+						have a restaurant for you.
+					</p>
+				</div>
+			</section>
+
+			<section class="restaurants">
+				<div class="restaurants__content">
+					<div class="restaurants__item">
+						<a href="">
+							<img src="{% static 'images/hero.jpg' %}" alt="test" />
+							<div class="restaurants__item__details">
+								<div class="restaurants__item__details-group">
+									<p class="restaurants__item-type">Mexican</p>
+									<p class="restaurants__item-rating">4.5</p>
+								</div>
+
+								<div>
+									<p class="restaurants__item-name">Mexican Restaurant Name</p>
+									<p class="restaurants__item-location">Bristol, UK</p>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="restaurants__item">
+						<a href="">
+							<img src="{% static 'images/hero.jpg' %}" alt="test" />
+							<div class="restaurants__item__details">
+								<div class="restaurants__item__details-group">
+									<p class="restaurants__item-type">Mexican</p>
+									<p class="restaurants__item-rating">4.5</p>
+								</div>
+
+								<div>
+									<p class="restaurants__item-name">Mexican Restaurant Name</p>
+									<p class="restaurants__item-location">Bristol, UK</p>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="restaurants__item">
+						<a href="">
+							<img src="{% static 'images/hero.jpg' %}" alt="test" />
+							<div class="restaurants__item__details">
+								<div class="restaurants__item__details-group">
+									<p class="restaurants__item-type">Mexican</p>
+									<p class="restaurants__item-rating">4.5</p>
+								</div>
+
+								<div>
+									<p class="restaurants__item-name">Mexican Restaurant Name</p>
+									<p class="restaurants__item-location">Bristol, UK</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>
