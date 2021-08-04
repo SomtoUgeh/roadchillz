@@ -1,3 +1,30 @@
+@font-face {
+	font-family: 'MaisonNeue';
+	src: url('./fonts/MaisonNeue-Book.ttf');
+}
+
+@font-face {
+	font-family: 'MaisonNeue-Light';
+	src: url('./fonts/MaisonNeue-Light.ttf');
+}
+
+@font-face {
+	font-family: 'MaisonNeue-Medium';
+	src: url('./fonts/MaisonNeue-Medium.ttf');
+}
+
+@font-face {
+	font-family: 'MaisonNeue-Heading';
+	src: url('./fonts/MaisonNeueExtended-Book.woff');
+}
+
+:root {
+	--font-fam: 'MaisonNeue';
+	--font-fam-light: 'MaisonNeue-Light';
+	--font-fam-medium: 'MaisonNeue-Medium';
+	--font-fam-head: 'MaisonNeue-Heading';
+}
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -13,6 +40,7 @@
 	-webkit-box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	font-family: var(--font-fam);
 }
 
 html {
@@ -357,6 +385,12 @@ ul {
 
 header {
 	background-color: #fff;
+
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
 }
 
 header nav {
@@ -381,6 +415,10 @@ header nav ul li a {
 
 header nav img {
 	width: 150px;
+}
+
+main {
+	padding-top: 3rem;
 }
 
 .hero {
@@ -415,13 +453,14 @@ header nav img {
 
 .hero__content h1 {
 	font-style: normal;
-	font-weight: normal;
+	font-weight: 600;
 	font-size: 3rem;
 	line-height: 61px;
 	text-align: center;
 	letter-spacing: -3px;
 	color: #ffffff;
 	text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+	font-family: var(--font-fam-head);
 }
 
 .hero__content p {
@@ -489,7 +528,8 @@ header nav img {
 }
 
 .restaurants__item-name {
-	font-weight: bold;
+	font-weight: 600;
+	font-family: var(--font-fam-head);
 }
 
 .restaurants__item-location {
