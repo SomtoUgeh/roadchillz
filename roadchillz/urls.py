@@ -6,4 +6,5 @@ app_name = "roadchillz"
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('restaurants', views.list_restaurants, name='restaurants')
 ]
