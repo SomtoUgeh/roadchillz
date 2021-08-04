@@ -9,6 +9,9 @@ from django.urls import reverse
 def index(request):
     return render(request, 'roadchillz/index.html')
 
+def categories(request):
+    return render(request, 'roadchillz/categories.html')
+
 
 def list_restaurants(request):
     context_dict = {}

@@ -479,7 +479,26 @@ main.roadchillz__container {
 	display: block;
 	margin: 0 auto;
 	width: 80%;
-	padding: 6rem 0;
+	padding: 4rem 0;
+}
+
+.restaurants__heading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 2rem;
+}
+
+.restaurants__heading h2 {
+	font-size: 2rem;
+	font-family: var(--font-fam-head);
+}
+
+.restaurants__heading a {
+	color: #000;
+	border: 1px solid rgba(99, 90, 90, 0.212);
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
 }
 
 .restaurants__content {
