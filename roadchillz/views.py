@@ -12,6 +12,8 @@ def index(request):
 def categories(request):
     return render(request, 'roadchillz/categories.html')
 
+def category_restaurants(request):
+    return render(request, 'roadchillz/restaurants.html')
 
 def list_restaurants(request):
     context_dict = {}
