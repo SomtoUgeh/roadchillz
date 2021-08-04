@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'roadchillz/styles.css' %}"
+		/>
+
+		<title>{% block title_block %} Roadchillz {% endblock %}</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<div>
+					<a href="{% url 'roadchillz:index' %}">
+						<img src="{% static 'images/logo.jpg' %}" alt="RoadChillz Logo" />
+					</a>
+				</div>
+				<ul>
+					<li><a href="{% url 'roadchillz:signup' %}">Sign Up</a></li>
+					<li><a href="{% url 'roadchillz:login' %}">Login</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main class="roadchillz__container">
+			<section class="hero">
+				<div class="hero__content">
+					<h1>Connecting you to your next best meal</h1>
+					<p>
+						Introducing Roadchillz. Wherever you go, we <br />
+						have a restaurant for you.
+					</p>
+				</div>
+			</section>
+
+			{% block body_block %} {% endblock %}
+		</main>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+			crossorigin="anonymous"
+		></script>
+	</body>
+</html>
