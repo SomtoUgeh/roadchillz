@@ -435,3 +435,63 @@ header nav img {
 	color: #ffffff;
 	text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 }
+
+.restaurants {
+	display: block;
+	margin: 0 auto;
+	width: 80%;
+	padding: 6rem 0;
+}
+
+.restaurants__content {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	grid-gap: 4rem;
+}
+
+.restaurants__item img {
+	width: 100%;
+	background-position: center;
+	object-fit: cover;
+	height: 200px;
+	border-radius: 0.5rem;
+}
+
+.restaurants__item__details p {
+	line-height: 20px;
+	letter-spacing: -0.5px;
+	font-style: normal;
+	font-weight: normal;
+}
+
+.restaurants__item__details-group {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.restaurants__item-type {
+	font-size: 0.85rem;
+	color: #9c9c9c;
+}
+
+.restaurants__item-rating {
+	font-size: 0.85rem;
+	color: #222222;
+	font-weight: bold;
+}
+
+.restaurants__item-name,
+.restaurants__item-location {
+	padding-top: 0.35rem;
+	font-size: 1rem;
+	color: #000000;
+}
+
+.restaurants__item-name {
+	font-weight: bold;
+}
+
+.restaurants__item-location {
+	color: #9c9c9c;
+}
