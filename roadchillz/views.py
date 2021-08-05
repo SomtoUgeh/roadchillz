@@ -36,7 +36,6 @@ def category_restaurants(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
         restaurants = Restaurant.objects.filter(category=category)
-
         context_dict['category'] = category
         context_dict['restaurants'] = restaurants
     except Category.DoesNotExist:
@@ -44,7 +43,7 @@ def category_restaurants(request, category_name_slug):
         context_dict['restaurants'] = None
 
     # Go render the response and return it to the client.
-    return render(request, 'roadchillz/restaurants.html')
+    return render(request, 'roadchillz/restaurants.html', context=context_dict)
 
 
 def single_restaurant(request, restaurant_name_slug):
@@ -57,7 +56,7 @@ def single_restaurant(request, restaurant_name_slug):
         context_dict['restaurant'] = None
 
     # Go render the response and return it to the client.
-    return render(request, 'roadchillz/single-restaurant.html')
+    return render(request, 'roadchillz/single-restaurant.html', context=context_dict)
 
 
 @login_required

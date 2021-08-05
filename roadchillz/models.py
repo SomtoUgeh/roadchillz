@@ -43,7 +43,7 @@ class Restaurant(models.Model):
             self.likes = 0
 
         self.slug = slugify(self.name)
-        super(Category, self).save(*args, **kwargs)
+        super(Restaurant, self).save(*args, **kwargs)
 
 
     def __str__(self):
