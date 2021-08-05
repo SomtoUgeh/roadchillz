@@ -2,29 +2,33 @@
 {% load static %}
 
 {% block body_block %}
-<section class="restaurants">
-	<div class="restaurants__heading">
-		<h2>Restaurants</h2>
-		<a href="{% url 'roadchillz:categories' %}">View Categories →</a>
-	</div>
+<main>
+	{% include 'roadchillz/hero.html' %}
 
-	<div class="restaurants__content">
-		<div class="restaurants__item">
-			<a href="{% url 'roadchillz:single_restaurant' %}">
-				<img src="{% static 'images/hero.jpg' %}" alt="test" />
-				<div class="restaurants__item__details">
-					<div class="restaurants__item__details-group">
-						<p class="restaurants__item-type">Mexican</p>
-						<p class="restaurants__item-rating">4.5</p>
-					</div>
-
-					<div>
-						<p class="restaurants__item-name">Mexican Restaurant Name</p>
-						<p class="restaurants__item-location">Bristol, UK</p>
-					</div>
-				</div>
-			</a>
+	<section class="restaurants">
+		<div class="restaurants__heading">
+			<h2>Restaurants</h2>
+			<a href="{% url 'roadchillz:categories' %}">View Categories →</a>
 		</div>
-	</div>
-</section>
+
+		<div class="restaurants__content">
+			<div class="restaurants__item">
+				<a href="{% url 'roadchillz:single_restaurant' %}">
+					<img src="{% static 'images/hero.jpg' %}" alt="test" />
+					<div class="restaurants__item__details">
+						<div class="restaurants__item__details-group">
+							<p class="restaurants__item-type">Mexican</p>
+							<p class="restaurants__item-rating">4.5</p>
+						</div>
+
+						<div>
+							<p class="restaurants__item-name">Mexican Restaurant Name</p>
+							<p class="restaurants__item-location">Bristol, UK</p>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+</main>
 {% endblock %}

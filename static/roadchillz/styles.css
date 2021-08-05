@@ -416,10 +416,11 @@ header nav ul {
 	display: flex;
 	margin: 0;
 	padding: 0;
+	align-items: center;
 }
 
-header nav ul li:first-of-type {
-	margin-right: 3rem;
+header nav ul li:not(:last-child) {
+	margin-right: 2rem;
 }
 
 header nav ul li a {
@@ -430,8 +431,8 @@ header nav img {
 	width: 150px;
 }
 
-main.roadchillz__container,
-main.single__restaurant {
+section.roadchillz__container,
+section.single__restaurant {
 	padding-top: 3.5rem;
 }
 
@@ -588,11 +589,10 @@ main.single__restaurant {
 	display: block;
 }
 
-.add-restaurant-btn {
+/* .add-restaurant-btn {
 	margin-left: 20px;
 	border-radius: 25px;
-
-}
+} */
 
 .auth__form-title {
 	text-align: center;
