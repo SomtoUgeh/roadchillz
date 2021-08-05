@@ -6,9 +6,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from roadchillz.forms import AddRestaurantForm
 from roadchillz.forms import UserForm, UserProfileForm
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, 'roadchillz/index.html')
+
 
 def categories(request):
     context_dict = {}
@@ -19,11 +21,14 @@ def categories(request):
         context_dict['categories'] = None
     return render(request, 'roadchillz/categories.html', context=context_dict)
 
+
 def category_restaurants(request):
     return render(request, 'roadchillz/restaurants.html')
 
+
 def single_restaurant(request):
     return render(request, 'roadchillz/single-restaurant.html')
+
 
 def list_restaurants(request):
     context_dict = {}
@@ -40,27 +45,8 @@ def list_restaurants(request):
     return render(request, 'roadchillz/restaurants.html', context=context_dict)
 
 
-def user_login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        user = authenticate(username=username, password=password)
-
-        if user:
-            if user.is_active:
-                login(request, user)
-                return redirect(reverse('roadchillz:index'))
-            else:
-                return HttpResponse("Your Roadchillz account is disabled.")
-        else:
-            print(f"Invalid login details: {username}, {password}")
-            return HttpResponse("Invalid login details supplied.")
-    else:
-        return render(request, 'roadchillz/login.html')
-
+@login_required
 def add_restaurant(request):
-
     form = AddRestaurantForm()
 
     if request.method == 'POST':
@@ -76,7 +62,8 @@ def add_restaurant(request):
 def signup(request):
     return render(request, 'roadchillz/signup.html')
 
-def register(request):
+
+def signup(request):
     registered = False
 
     if request.method == 'POST':
@@ -102,8 +89,30 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
 
-    return render(request, 'roadchillz/register.html', context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
+    return render(request, 'roadchillz/signup.html', context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect(reverse('roadchillz:index'))
+            else:
+                return HttpResponse("Your Roadchillz account is disabled.")
+        else:
+            print(f"Invalid login details: {username}, {password}")
+            return HttpResponse("Invalid login details supplied.")
+    else:
+        return render(request, 'roadchillz/login.html')
+
+
+@login_required
 def user_logout(request):
     logout(request)
     return redirect(reverse('roadchillz:index'))

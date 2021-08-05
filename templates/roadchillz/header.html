@@ -10,18 +10,20 @@
 
 		<ul>
 			{% if user.is_authenticated %}
-			<li>
-				<a
-					class="add-restaurant-btn btn btn-warning"
-					href="{% url 'roadchillz:add_restaurant' %}"
-					>Add Restaurant</a
-				>
-			</li>
+				<li>
+					<a
+						class="  btn btn-warning"
+						href="{% url 'roadchillz:add_restaurant' %}"
+						>Add Restaurant</a
+					>
+				</li>
+				<li><a href="{% url 'roadchillz:logout' %}">Logout</a></li>
+			{% else %}
+				<li><a href="{% url 'roadchillz:login' %}">Login</a></li>
+				<li>
+					<a class="mr-4" href="{% url 'roadchillz:signup' %}">Sign Up</a>
+				</li>
 			{% endif %}
-			<li>
-				<a class="mr-4" href="{% url 'roadchillz:signup' %}">Sign Up</a>
-			</li>
-			<li><a href="{% url 'roadchillz:login' %}">Login</a></li>
 		</ul>
 	</nav>
 </header>
