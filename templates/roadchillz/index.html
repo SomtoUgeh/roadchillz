@@ -12,22 +12,28 @@
 		</div>
 
 		<div class="restaurants__content">
-			<div class="restaurants__item">
-				<a href="{% url 'roadchillz:single_restaurant' %}">
-					<img src="{% static 'images/hero.jpg' %}" alt="test" />
-					<div class="restaurants__item__details">
-						<div class="restaurants__item__details-group">
-							<p class="restaurants__item-type">Mexican</p>
-							<p class="restaurants__item-rating">4.5</p>
-						</div>
+			{% if restaurants %}
+				{% for r in restaurants %}
+					<div class="restaurants__item">
+						<a href="{% url 'roadchillz:single_restaurant' r.slug %}">
+							<img src="{{ r.image_url }}" alt="{{ r.name }}" />
+							<div class="restaurants__item__details">
+								<div class="restaurants__item__details-group">
+									<p class="restaurants__item-type">{{ r.category }}</p>
+									<p class="restaurants__item-rating">{{ r.likes }}</p>
+								</div>
 
-						<div>
-							<p class="restaurants__item-name">Mexican Restaurant Name</p>
-							<p class="restaurants__item-location">Bristol, UK</p>
-						</div>
+								<div>
+									<p class="restaurants__item-name">{{ r.name }}</p>
+									<p class="restaurants__item-location">{{ r.location_name }}</p>
+								</div>
+							</div>
+						</a>
 					</div>
-				</a>
-			</div>
+				{% endfor %}
+			{% else %}
+				<strong>There are no restaurants present.</strong>
+			{% endif %}
 		</div>
 	</section>
 </main>
