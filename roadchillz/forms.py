@@ -8,6 +8,10 @@ class AddRestaurantForm(forms.ModelForm):
         label = 'Name',
         max_length=Category.NAME_MAX_LENGTH,
         widget=forms.TextInput(attrs={'class':'form-control'}))
+
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
+    likes = forms.IntegerField(widget=forms.HiddenInput(), required=False)
+
     long = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     lat = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     location_name = forms.CharField(widget=forms.HiddenInput(), required=False)

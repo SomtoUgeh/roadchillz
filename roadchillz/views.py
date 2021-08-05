@@ -9,7 +9,15 @@ from roadchillz.forms import UserForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    return render(request, 'roadchillz/index.html')
+    context_dict = {}
+
+    try:
+        restaurants = Restaurant.objects.all()
+        context_dict['restaurants'] = restaurants
+    except Restaurant.DoesNotExist:
+        context_dict['restaurants'] = None
+
+    return render(request, 'roadchillz/index.html', context=context_dict)
 
 
 def categories(request):
@@ -17,32 +25,39 @@ def categories(request):
     try:
         categories = Category.objects.all()
         context_dict['categories'] = categories
-    except Restaurant.DoesNotExist:
+    except Category.DoesNotExist:
         context_dict['categories'] = None
     return render(request, 'roadchillz/categories.html', context=context_dict)
 
 
-def category_restaurants(request):
+def category_restaurants(request, category_name_slug):
+    context_dict = {}
+
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+        restaurants = Restaurant.objects.filter(category=category)
+
+        context_dict['category'] = category
+        context_dict['restaurants'] = restaurants
+    except Category.DoesNotExist:
+        context_dict['category'] = None
+        context_dict['restaurants'] = None
+
+    # Go render the response and return it to the client.
     return render(request, 'roadchillz/restaurants.html')
 
 
-def single_restaurant(request):
-    return render(request, 'roadchillz/single-restaurant.html')
-
-
-def list_restaurants(request):
+def single_restaurant(request, restaurant_name_slug):
     context_dict = {}
-    try:
-        # checking related data
-        # restaurants = Restaurant.objects.get(id=1)
-        # print(restaurants.category)
 
-        restaurants = Restaurant.objects.all()
-        context_dict['restaurants'] = restaurants
+    try:
+        restaurant = Restaurant.objects.get(slug=restaurant_name_slug)
+        context_dict['restaurant'] = restaurant
     except Restaurant.DoesNotExist:
-        context_dict['restaurants'] = None
-    print(context_dict)
-    return render(request, 'roadchillz/restaurants.html', context=context_dict)
+        context_dict['restaurant'] = None
+
+    # Go render the response and return it to the client.
+    return render(request, 'roadchillz/single-restaurant.html')
 
 
 @login_required
@@ -57,10 +72,6 @@ def add_restaurant(request):
         else:
             print(form.errors)
     return render(request, 'roadchillz/add-restaurant.html', {'form': form})
-
-
-def signup(request):
-    return render(request, 'roadchillz/signup.html')
 
 
 def signup(request):
