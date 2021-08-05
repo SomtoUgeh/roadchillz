@@ -5,6 +5,7 @@ from roadchillz.models import Restaurant, Category, Item
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from roadchillz.forms import AddRestaurantForm
+from roadchillz.forms import UserForm, UserProfileForm
 
 def index(request):
     return render(request, 'roadchillz/index.html')
@@ -75,19 +76,34 @@ def add_restaurant(request):
 def signup(request):
     return render(request, 'roadchillz/signup.html')
 
+def register(request):
+    registered = False
 
-# class LikeRestaurant(View):
-#     @method_decorator(login_required)
-#     def get(self, request):
-#         restaurant_id = request.GET['restaurant_id']
+    if request.method == 'POST':
+        user_form = UserForm(request.POST)
+        profile_form = UserProfileForm(request.POST)
 
-#         try:
-#             restaurant = Restaurant.objects.get(id=restaurant_id)
-#         except Restaurant.DoesNotExist:
-#             return HttpResponse(-1)
-#         except ValueError:
-#             return HttpResponse(-1)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
 
-#         restaurant.likes = restaurant.likes + 1
-#         restaurant.save()
-#         return HttpResponse(restaurant.likes)
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+
+            profile.save()
+            registered = True
+        else:
+            print(user_form.errors, profile_form.errors)
+    else:
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+
+    return render(request, 'roadchillz/register.html', context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
+
+def user_logout(request):
+    logout(request)
+    return redirect(reverse('roadchillz:index'))
