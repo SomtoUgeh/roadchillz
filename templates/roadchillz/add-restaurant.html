@@ -1,0 +1,33 @@
+{% extends 'roadchillz/base.html' %}
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <br>
+            <h1>Add your restaurant details</h1>
+            <br>
+            <div>
+                <form class="form-group" id="add_restaurant_form" method="post" action="{% url 'roadchillz:add_restaurant' %}">
+                    {% csrf_token %}
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                    {% for field in form.visible_fields %}
+                        {{ field.errors }}
+                        {{ field.help_text }}
+                        {{ field.label }} {{ field }}
+                    {% endfor %}
+                    {{ form.media }}
+                    <div id="map">Map Here</div>
+                    <div>
+                        <button type="button" class="add-item-btn btn btn-outline-warning">Add Menu Item</button>
+                    </div>
+                    <br>
+                    <input class="btn btn-primary" type="submit" name="submit" value="Add Restaurant" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+{% endblock %}

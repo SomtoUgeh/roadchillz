@@ -4,13 +4,19 @@ from django.http import HttpResponse
 from roadchillz.models import Restaurant, Category, Item
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
-
+from roadchillz.forms import AddRestaurantForm
 
 def index(request):
     return render(request, 'roadchillz/index.html')
 
 def categories(request):
-    return render(request, 'roadchillz/categories.html')
+    context_dict = {}
+    try:
+        categories = Category.objects.all()
+        context_dict['categories'] = categories
+    except Restaurant.DoesNotExist:
+        context_dict['categories'] = None
+    return render(request, 'roadchillz/categories.html', context=context_dict)
 
 def category_restaurants(request):
     return render(request, 'roadchillz/restaurants.html')
@@ -27,10 +33,10 @@ def list_restaurants(request):
 
         restaurants = Restaurant.objects.all()
         context_dict['restaurants'] = restaurants
-    except Category.DoesNotExist:
+    except Restaurant.DoesNotExist:
         context_dict['restaurants'] = None
     print(context_dict)
-    return render(request, 'restaurants.html', context=context_dict)
+    return render(request, 'roadchillz/restaurants.html', context=context_dict)
 
 
 def user_login(request):
@@ -51,6 +57,19 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
     else:
         return render(request, 'roadchillz/login.html')
+
+def add_restaurant(request):
+
+    form = AddRestaurantForm()
+
+    if request.method == 'POST':
+        form = AddRestaurantForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect(reverse('roadchillz:index'))
+        else:
+            print(form.errors)
+    return render(request, 'roadchillz/add-restaurant.html', {'form': form})
 
 
 def signup(request):

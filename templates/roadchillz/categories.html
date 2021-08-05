@@ -13,16 +13,22 @@
 		</div>
 
 		<div class="restaurants__content">
-			<div class="restaurants__item">
-				<a href="{% url 'roadchillz:category_restaurants' %}">
-					<img src="{% static 'images/hero.jpg' %}" alt="test" />
-					<div class="restaurants__item__details">
-						<div>
-							<p class="restaurants__item-name">Mexican Restaurant Name</p>
-						</div>
+			{% if categories %}
+				{% for c in categories %}
+					<div class="restaurants__item">
+						<a href="{% url 'roadchillz:category_restaurants' %}">
+							<img src="{% static 'images/hero.jpg' %}" alt="test" />
+							<div class="restaurants__item__details">
+								<div>
+									<p class="restaurants__item-name">{{ c.name | title}}</p>
+								</div>
+							</div>
+						</a>
 					</div>
-				</a>
-			</div>
+				{% endfor %}
+			{% else %}
+				<strong>There are no categories present.</strong>
+			{% endif %}
 		</div>
 	</section>
 {% endblock %}
