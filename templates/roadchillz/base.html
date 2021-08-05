@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 {% load static %}
 
 <html lang="en">
@@ -17,7 +16,14 @@
 			type="text/css"
 			href="{% static 'roadchillz/styles.css' %}"
 		/>
-
+		<script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/jquery.timepicker.js' %}"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'js/jquery.timepicker.css' %}"/>
+		<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+		<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAv1XMtZ3jR2PkIgGiZe4QMqqijSINc87k&callback=initMap&libraries=&v=weekly"
+		async
+	  ></script>
 		<title>{% block title_block %} Roadchillz {% endblock %}</title>
 	</head>
 	<body>
@@ -27,6 +33,7 @@
 					<a href="{% url 'roadchillz:index' %}">
 						<img src="{% static 'images/logo.jpg' %}" alt="RoadChillz Logo" />
 					</a>
+					<a class="add-restaurant-btn btn btn-warning" href="{% url 'roadchillz:add_restaurant' %}">Add Restaurant</a>
 				</div>
 				<ul>
 					<li><a href="{% url 'roadchillz:signup' %}">Sign Up</a></li>

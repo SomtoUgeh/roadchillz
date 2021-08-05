@@ -26,8 +26,8 @@ class Restaurant(models.Model):
     long = models.FloatField()
     lat = models.FloatField()
     location_name = models.CharField(max_length=NAME_MAX_LENGTH)
-    open_time = models.DateTimeField()
-    close_time = models.DateTimeField()
+    open_time = models.TimeField()
+    close_time = models.TimeField()
     image_url = models.CharField(max_length=IMAGE_URL_MAX_LENGTH)
 
     def __str__(self):
@@ -38,7 +38,7 @@ class Item(models.Model):
     IMAGE_URL_MAX_LENGTH = 128
     name = models.CharField(max_length=NAME_MAX_LENGTH)
     image_url = models.CharField(max_length=IMAGE_URL_MAX_LENGTH)
-    price = models.BigIntegerField()
+    price = models.FloatField()
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
     def __str__(self):
