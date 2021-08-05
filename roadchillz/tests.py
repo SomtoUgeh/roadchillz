@@ -30,47 +30,56 @@ def add_category(name):
 
 
 class IndexViewTests(TestCase):
-    def test_index_view_with_no_restaurants(self):
-      """
-      If no restaurants exist, the appropriate message should be displayed.
-      """
+  def test_index_view_with_no_restaurants(self):
+    """
+    If no restaurants exist, the appropriate message should be displayed.
+    """
 
-      response = self.client.get(reverse('roadchillz:index'))
+    response = self.client.get(reverse('roadchillz:index'))
 
-      self.assertEqual(response.status_code, 200)
-      self.assertContains(response, 'There are no restaurants present.')
-      self.assertQuerysetEqual(response.context['restaurants'], [])
+    self.assertEqual(response.status_code, 200)
+    self.assertContains(response, 'There are no restaurants present.')
+    self.assertQuerysetEqual(response.context['restaurants'], [])
 
-    def test_index_view_with_restaurants(self):
-      """
-      Checks whether restaurants are displayed correctly when present.
-      """
+  def test_index_view_with_restaurants(self):
+    """
+    Checks whether restaurants are displayed correctly when present.
+    """
 
-      add_restaurant('Restaurant 1', 'Location 1', '12:00', '23:00', '-1.23', '1.23', 'take away', '["burger", "canadian"]', '{"name": "hash brown", "price": "1.29" }', 2)
-      add_restaurant('Restaurant 2', 'Location 1', '12:00', '23:00', '-1.23', '1.23', 'take away', '["burger", "canadian"]', '{"name": "hash brown", "price": "1.29" }', 2)
-      add_restaurant('Restaurant 3', 'Location 1', '12:00', '23:00', '-1.23', '1.23', 'take away', '["burger", "canadian"]', '{"name": "hash brown", "price": "1.29" }', 2)
+    add_restaurant('Restaurant 1', 'Location 1', '12:00', '23:00', '-1.23', '1.23', 'take away', '["burger", "canadian"]', '{"name": "hash brown", "price": "1.29" }', 2)
+    add_restaurant('Restaurant 2', 'Location 1', '12:00', '23:00', '-1.23', '1.23', 'take away', '["burger", "canadian"]', '{"name": "hash brown", "price": "1.29" }', 2)
+    add_restaurant('Restaurant 3', 'Location 1', '12:00', '23:00', '-1.23', '1.23', 'take away', '["burger", "canadian"]', '{"name": "hash brown", "price": "1.29" }', 2)
 
-      response = self.client.get(reverse('roadchillz:index'))
+    response = self.client.get(reverse('roadchillz:index'))
 
-      self.assertEqual(response.status_code, 200)
+    self.assertEqual(response.status_code, 200)
 
-      self.assertContains(response, 'Restaurant 1')
-      self.assertContains(response, 'Restaurant 2')
-      self.assertContains(response, 'Restaurant 3')
+    self.assertContains(response, 'Restaurant 1')
+    self.assertContains(response, 'Restaurant 2')
+    self.assertContains(response, 'Restaurant 3')
 
-      num_restaurants = len(response.context['restaurants'])
-      self.assertEquals(num_restaurants, 3)
+    num_restaurants = len(response.context['restaurants'])
+    self.assertEquals(num_restaurants, 3)
 
-    def test_slug_line_creation(self):
-      """
-      Checks to make sure that when a restaurant is created, an appropriate slug is created.
-      Example: "Random Restaurant String" should be "random-restaurant-string".
-      """
+  def test_slug_line_creation(self):
+    """
+    Checks to make sure that when a restaurant is created, an appropriate slug is created.
+    Example: "Random Restaurant String" should be "random-restaurant-string".
+    """
 
-      restaurant = add_restaurant('Very good food', 'Location 1', '12:00', '23:00', '-1.23', '1.23', 'take away', '["burger", "canadian"]', '{"name": "hash brown", "price": "1.29" }', 2)
-      restaurant.save()
+    restaurant = add_restaurant('Very good food', 'Location 1', '12:00', '23:00', '-1.23', '1.23', 'take away', '["burger", "canadian"]', '{"name": "hash brown", "price": "1.29" }', 2)
+    restaurant.save()
 
-      self.assertEqual(restaurant.slug, 'very-good-food')
+    self.assertEqual(restaurant.slug, 'very-good-food')
+
+  def test_ensure_likes_are_positive(self):
+    """
+    Ensures the number of likes received for a Restaurant are positive or zero.
+    """
+
+    restaurant = add_restaurant('Very good food', 'Location 1', '12:00', '23:00', '-1.23', '1.23', 'take away', '["burger", "canadian"]', '{"name": "hash brown", "price": "1.29" }', 2)
+
+    self.assertEqual((restaurant.likes >=0), True)
 
 
 class CategoryMethodTests(TestCase):

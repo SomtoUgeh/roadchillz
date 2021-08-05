@@ -39,6 +39,9 @@ class Restaurant(models.Model):
     likes = models.IntegerField(default=0)
 
     def save (self, *args, **kwargs):
+        if self.likes < 0:
+            self.likes = 0
+
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
