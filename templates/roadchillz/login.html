@@ -9,23 +9,42 @@
 	<h2 class="auth__form-title">Login</h2>
 	<p class="auth__form-description">Welcome back to Roadchillz</p>
 
-	<div class="auth__form-wrapper">
-		<div class="input__box">
-			<div class="input__wrapper">
-				<input type="text" name="email" placeholder=" " class="form__input" />
-				<label class="form__label" htmlFor="email">Email Address</label>
-			</div>
-		</div>
+	<form
+		method="post"
+		id="login_form"
+		enctype="multipart/form-data"
+		class="auth__form-wrapper form-group"
+		action="{% url 'roadchillz:login' %}"
+	>
+		{% csrf_token %}
 
-		<div class="input__box">
-			<div class="input__wrapper">
-				<input type="text" placeholder=" " name="password" class="form__input" />
-				<label class="form__label" htmlFor="password">Password</label>
-			</div>
-		</div>
+		<label for="id_email">Username</label>
+		<input
+			type="text"
+			name="username"
+			placeholder=""
+			class="form-control"
+			required
+		/>
 
-		<button class="button">Login</button>
-	</div>
+		<label for="password">Password</label>
+		<input
+			name="password"
+			type="password"
+			placeholder=""
+			class="form-control"
+			required
+		/>
+
+		<div class="mt-5">
+			<input
+				type="submit"
+				name="submit"
+				value="Login"
+				class="stretch-btn btn btn-warning btn-block"
+			/>
+		</div>
+	</form>
 
 	<div class="signup">
 		Don’t have an account?

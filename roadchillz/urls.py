@@ -13,6 +13,5 @@ urlpatterns = [
     path('categories/restaurants', views.category_restaurants, name='category_restaurants'),
     path('login', views.user_login, name='login'),
     path('signup', views.signup, name='signup'),
-    path('register/', views.register, name='register'),
-    path('logout/', views.user_logout, name='logout'),
+    path('logout', views.user_logout, name='logout'),
 ]

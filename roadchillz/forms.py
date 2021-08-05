@@ -18,7 +18,7 @@ class AddRestaurantForm(forms.ModelForm):
         label = 'Close Time',
         widget=forms.DateInput(attrs={'class':'form-control timepicker'}))
     category = forms.CharField(
-        label = 'Category', 
+        label = 'Category',
         widget = forms.Select( attrs = {'class':'form-control'},
                 choices= [
                     ('', 'Select')
@@ -26,7 +26,7 @@ class AddRestaurantForm(forms.ModelForm):
             )
         )
     cuisines = forms.CharField(
-        label = 'Cuisines', 
+        label = 'Cuisines',
         widget = forms.Select( attrs = {'class':'form-control'},
                 choices= [
                     ('', 'Select')
@@ -37,15 +37,19 @@ class AddRestaurantForm(forms.ModelForm):
     class Meta:
         model = Restaurant
         fields = ('name','open_time',)
-    
+
+
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
     class Meta:
         model = User
         fields = ('username', 'email', 'password',)
 
+
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('website', 'picture',)
+        fields = ('picture',)

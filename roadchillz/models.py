@@ -49,13 +49,12 @@ class Cuisine(models.Model):
     NAME_MAX_LENGTH = 64
     name = models.CharField(max_length=NAME_MAX_LENGTH)
     item = models.ManyToManyField(Restaurant)
-    
+
     def __str__(self):
         return self.name
-        
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    website = models.URLField(blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
 
     def __str__(self):
