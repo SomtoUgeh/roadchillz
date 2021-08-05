@@ -6,13 +6,16 @@
 {% endblock %}
 
 {% block body_block %}
-	<section class="restaurants">
-		<div class="restaurants__heading">
-			<h2>Restaurants -</h2>
-			<a href="{% url 'roadchillz:categories' %}">View Categories →</a>
-		</div>
+<main>
+	{% include 'roadchillz/hero.html' %}
 
-		<div class="restaurants__content">
+  <section class="restaurants">
+    <div class="restaurants__heading">
+      <h2>Restaurants -</h2>
+      <a href="{% url 'roadchillz:categories' %}">View Categories →</a>
+    </div>
+
+    <div class="restaurants__content">
       <div class="restaurants__item">
         <a href="{% url 'roadchillz:single_restaurant' %}">
           <img src="{% static 'images/hero.jpg' %}" alt="test" />
@@ -29,6 +32,7 @@
           </div>
         </a>
       </div>
-		</div>
-	</section>
+    </div>
+  </section>
+</main>
 {% endblock %}
