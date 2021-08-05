@@ -8,12 +8,6 @@ from roadchillz.models import Category, Restaurant, Cuisine, Item
 from datetime import datetime
 
 def populate():
-    # First, we will create lists of dictionaries containing the pages
-    # we want to add into each category.
-    # Then we will create a dictionary of dictionaries for our categories.
-    # This might seem a little bit confusing, but it allows us to iterate
-    # through each data structure, and add the data to our models.
-
     cuisines = ['mexican', 'italian', 'canadian', 'chinese', 'american', 'indian', 'thai', 'nigerian', 'pizza', 'burger' ]
     categories = [
         {'name':'dine out', 'image_url': '/static/images/dine-out.jpg'}, 
@@ -32,6 +26,7 @@ def populate():
             'lat': '55.85862919690698',
             'long': '-4.256994633787019',
             'location_name': 'argyle street',
+            'image_url': '/static/images/tim-hortons.jpg',
             'category': 'take away',
             'cuisine': ['burger', 'canadian'],
             'items': [
@@ -56,6 +51,7 @@ def populate():
             'lat': '55.85728851068552',
             'long': '-4.2462774609719265',
             'location_name': 'tron gate',
+            'image_url': '/static/images/mcd.jpg',
             'category': 'dine out',
             'cuisine': ['burger', 'american'],
             'items': [
@@ -80,6 +76,7 @@ def populate():
             'lat': '55.86439941126669',
             'long': '-4.254263703646989',
             'location_name': 'sauichiehall street',
+            'image_url': '/static/images/starbucks.jpg',
             'category' : 'cafe',
             'cuisine': ['american'],
             'items': [
@@ -103,6 +100,7 @@ def populate():
             'close_time': '19:00',
             'lat': '55.87133375020882',
             'long': '-4.298679735504694',
+            'image_url': '/static/images/henleys.jpg',
             'category' : 'dine out',
             'cuisine': ['italian', 'mexican'],
             'location_name': 'byres road',
@@ -141,6 +139,7 @@ def populate():
             close_time=restaurant['close_time'],
             lat=restaurant['lat'],
             long=restaurant['long'],
+            image_url=restaurant['image_url'],
             location_name=restaurant['location_name']
         )[0]
         for item in restaurant['items']:
