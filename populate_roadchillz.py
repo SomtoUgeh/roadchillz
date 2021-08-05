@@ -15,7 +15,14 @@ def populate():
     # through each data structure, and add the data to our models.
 
     cuisines = ['mexican', 'italian', 'canadian', 'chinese', 'american', 'indian', 'thai', 'nigerian', 'pizza', 'burger' ]
-    categories = ['dine out', 'cafe', 'pub', 'night life', 'drinks', 'take away']
+    categories = [
+        {'name':'dine out', 'image_url': '/static/images/dine-out.jpg'}, 
+        {'name': 'cafe', 'image_url': '/static/images/cafe.jpg'}, 
+        {'name': 'pub', 'image_url': '/static/images/pub.jpg'}, 
+        {'name':'night life', 'image_url': '/static/images/nightlife.jpg'}, 
+        {'name': 'drinks', 'image_url': '/static/images/drinks.jpg'}, 
+        {'name': 'take away', 'image_url': '/static/images/takeaway.jpg'}
+    ]
 
     restaurants = [
         {
@@ -144,8 +151,8 @@ def populate():
         for p in Restaurant.objects.filter(category=c):
             print(f'- {c}: {p}')
 
-def add_cat(name):
-    c = Category.objects.get_or_create(name=name)[0]
+def add_cat(category_data):
+    c = Category.objects.get_or_create(name=category_data['name'], image_url=category_data['image_url'])[0]
     c.save()
     return c
 

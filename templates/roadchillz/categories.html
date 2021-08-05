@@ -20,7 +20,7 @@
 				{% for c in categories %}
 					<div class="restaurants__item">
 						<a href="{% url 'roadchillz:category_restaurants' %}">
-							<img src="{% static 'images/hero.jpg' %}" alt="test" />
+							<img src="{{ c.image_url }}" alt="test" />
 							<div class="restaurants__item__details">
 								<div>
 									<p class="restaurants__item-name">{{ c.name | title}}</p>
