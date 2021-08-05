@@ -1,110 +1,77 @@
-<!DOCTYPE html>
+{% extends 'roadchillz/base.html' %}
 {% load static %}
 
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-			crossorigin="anonymous"
-		/>
-		<link
-			rel="stylesheet"
-			type="text/css"
-			href="{% static 'roadchillz/styles.css' %}"
-		/>
-		<title>Roadchillz | Restaurant</title>
-	</head>
-	<body>
-		<header>
-			<nav>
-				<div>
-					<a href="{% url 'roadchillz:index' %}">
-						<img src="{% static 'images/logo.jpg' %}" alt="RoadChillz Logo" />
-					</a>
+{% block title_block %}
+	RoadChillz | Single Restaurant
+{% endblock %}
+
+{% block body_block %}
+<main>
+	<section class="single__restaurant">
+		<section class="restaurants">
+			<div>
+				<h1>Restaurants</h1>
+				<p>San Francisco California, United States</p>
+			</div>
+
+			<img
+				src="{% static 'images/hero.jpg' %}"
+				alt="RoadChillz Logo"
+				class="single__restaurant-image"
+			/>
+
+			<p class="single__restaurant-description">
+				Our office space sits on four floors of a 34-story office building on
+				the northwestern edge of Lafayette, New York. This modern high-rise is a
+				an icon in the Empire State. Discover private offices, hot desks, and
+				shared spaces for a community of innovative professionals. Parking and
+				bike storage are available in our basement, but most members can easily
+				walk to work. Marengo On the Alley is a popular nearby lunch spot, and
+				Kearny Street is home to plenty of other restaurants and watering holes
+				for the after-work hours. Elevate your business in this lively
+				neighborhood.
+			</p>
+
+			<div class="single__restaurant__location">
+				<h2>Location</h2>
+				<div class="single__restaurant__map-container">
+					<img src="{% static 'images/map.jpg' %}" alt="RoadChillz Logo" />
 				</div>
-				<ul>
-					<li><a href="{% url 'roadchillz:signup' %}">Sign Up</a></li>
-					<li><a href="{% url 'roadchillz:login' %}">Login</a></li>
-				</ul>
-			</nav>
-		</header>
+			</div>
 
-		<main class="single__restaurant">
-			<section class="restaurants">
-				<div>
-					<h1>Restaurants</h1>
-					<p>San Francisco California, United States</p>
-				</div>
-
-				<img
-					src="{% static 'images/hero.jpg' %}"
-					alt="RoadChillz Logo"
-					class="single__restaurant-image"
-				/>
-
-				<p class="single__restaurant-description">
-					Our office space sits on four floors of a 34-story office building on
-					the northwestern edge of Lafayette, New York. This modern high-rise is
-					a an icon in the Empire State. Discover private offices, hot desks,
-					and shared spaces for a community of innovative professionals. Parking
-					and bike storage are available in our basement, but most members can
-					easily walk to work. Marengo On the Alley is a popular nearby lunch
-					spot, and Kearny Street is home to plenty of other restaurants and
-					watering holes for the after-work hours. Elevate your business in this
-					lively neighborhood.
-				</p>
-
-				<div class="single__restaurant__location">
-					<h2>Location</h2>
-					<div class="single__restaurant__map-container">
-						<img src="{% static 'images/map.jpg' %}" alt="RoadChillz Logo" />
-					</div>
+			<div class="single__restaurant-review">
+				<div class="single__restaurant-review-title">
+					<h2>4.92 - 12 Reviews</h2>
+					<button>Add a review</button>
 				</div>
 
-				<div class="single__restaurant-review">
-					<div class="single__restaurant-review-title">
-						<h2>4.92 - 12 Reviews</h2>
-						<button>Add a review</button>
+				<div class="reviews">
+					<div class="review">
+						<p class="review-name">Rick</p>
+						<p class="review-date">August 2022</p>
+
+						<p class="review-text">
+							Over the years, I've had lots of great experiences staying at
+							various locations all over the world. This is a great place with
+							lots of restaurants and amenities within walking distance. I would
+							definitely stay here again!
+						</p>
 					</div>
 
-					<div class="reviews">
-						<div class="review">
-							<p class="review-name">Rick</p>
-							<p class="review-date">August 2022</p>
+					<div class="review">
+						<p class="review-name">Rick</p>
+						<p class="review-date">August 2022</p>
 
-							<p class="review-text">
-								Over the years, I've had lots of great experiences staying at
-								various locations all over the world. This is a great place with
-								lots of restaurants and amenities within walking distance. I
-								would definitely stay here again!
-							</p>
-						</div>
-
-						<div class="review">
-							<p class="review-name">Rick</p>
-							<p class="review-date">August 2022</p>
-
-							<p class="review-text">
-								Over the years, I've had lots of great experiences staying at
-								various locations all over the world. This is a great place with
-								lots of restaurants and amenities within walking distance. I
-								would definitely stay here again!
-							</p>
-						</div>
+						<p class="review-text">
+							Over the years, I've had lots of great experiences staying at
+							various locations all over the world. This is a great place with
+							lots of restaurants and amenities within walking distance. I would
+							definitely stay here again!
+						</p>
 					</div>
 				</div>
-			</section>
-		</main>
-
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-			crossorigin="anonymous"
-		></script>
-	</body>
-</html>
+			</div>
+		</section>
+	</section>
+</main>
+{% endblock %}

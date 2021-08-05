@@ -1,0 +1,27 @@
+{% load static %}
+
+<header>
+	<nav>
+		<div>
+			<a href="{% url 'roadchillz:index' %}">
+				<img src="{% static 'images/logo.jpg' %}" alt="RoadChillz Logo" />
+			</a>
+		</div>
+
+		<ul>
+			{% if user.is_authenticated %}
+			<li>
+				<a
+					class="add-restaurant-btn btn btn-warning"
+					href="{% url 'roadchillz:add_restaurant' %}"
+					>Add Restaurant</a
+				>
+			</li>
+			{% endif %}
+			<li>
+				<a class="mr-4" href="{% url 'roadchillz:signup' %}">Sign Up</a>
+			</li>
+			<li><a href="{% url 'roadchillz:login' %}">Login</a></li>
+		</ul>
+	</nav>
+</header>
