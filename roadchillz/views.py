@@ -74,3 +74,20 @@ def add_restaurant(request):
 
 def signup(request):
     return render(request, 'roadchillz/signup.html')
+
+
+# class LikeRestaurant(View):
+#     @method_decorator(login_required)
+#     def get(self, request):
+#         restaurant_id = request.GET['restaurant_id']
+
+#         try:
+#             restaurant = Restaurant.objects.get(id=restaurant_id)
+#         except Restaurant.DoesNotExist:
+#             return HttpResponse(-1)
+#         except ValueError:
+#             return HttpResponse(-1)
+
+#         restaurant.likes = restaurant.likes + 1
+#         restaurant.save()
+#         return HttpResponse(restaurant.likes)
