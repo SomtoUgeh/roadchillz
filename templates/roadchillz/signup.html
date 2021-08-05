@@ -9,32 +9,36 @@
 	<h2 class="auth__form-title">Register</h2>
 	<p class="auth__form-description">Join Roadchillz today!</p>
 
-	<div class="auth__form-wrapper">
-		<div class="input__box">
-			<div class="input__wrapper">
-				<input type="text" name="username" placeholder=" " class="form__input" />
-				<label class="form__label" htmlFor="username">Username</label>
-			</div>
+	{% if registered %}
+		<div class='submitted'>
+			<strong>Thank you for registering!</strong>
+			<a href="{% url 'roadchillz:index' %}">Return to the homepage.</a><br />
 		</div>
+  {% else %}
+		<form
+			method="post"
+			id="user_form"
+			class="auth__form-wrapper form-group"
+			enctype="multipart/form-data"
+			action="{% url 'roadchillz:signup' %}"
+		>
+			{% csrf_token %}
 
-		<div class="input__box">
-			<div class="input__wrapper">
-				<input type="text" name="email" placeholder=" " class="form__input" />
-				<label class="form__label" htmlFor="email">Email Address</label>
+			{{ user_form }}
+			{{ profile_form }}
+
+			<div class="mt-5">
+				<input
+					type="submit"
+					name="submit"
+					value="Register"
+					class="stretch-btn btn btn-warning btn-block"
+				/>
 			</div>
+		</form>
+
+		<div class="signup">
+			Have an account? <a href="{% url 'roadchillz:login' %}">Login</a>
 		</div>
-
-		<div class="input__box">
-			<div class="input__wrapper">
-				<input type="text" placeholder=" " name="password" class="form__input" />
-				<label class="form__label" htmlFor="password">Password</label>
-			</div>
-		</div>
-
-		<button class="button">Register</button>
-	</div>
-
-	<div class="signup">
-		Have an account? <a href="{% url 'roadchillz:login' %}">Login</a>
-	</div>
+	{% endif %}
 {% endblock %}

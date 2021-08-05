@@ -818,3 +818,18 @@ button {
 #map {
 	height: 100%;
 }
+
+.stretch-btn {
+	display: block;
+	width: 100%;
+}
+
+.submitted {
+	padding: 4rem 0;
+	text-align: center;
+}
+
+.submitted a,
+.submitted strong {
+	display: block;
+}
