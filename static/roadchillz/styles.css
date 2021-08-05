@@ -564,6 +564,28 @@ section.single__restaurant {
 	color: #9c9c9c;
 }
 
+.auth__container {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: rgb(0 0 0 / 0);
+	background-image: url('../images/hero.jpg');
+	background-image: linear-gradient(
+			to top,
+			rgb(0 0 0 / 0%),
+			rgba(0, 0, 0, 0) 0%,
+			rgb(0 0 0 / 82%) 80%
+		),
+		url('../images/hero.jpg');
+
+	position: relative;
+
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	place-items: center;
+}
+
 .auth__wrapper {
 	display: flex;
 	margin: 0;
@@ -588,11 +610,6 @@ section.single__restaurant {
 	margin: 0 auto;
 	display: block;
 }
-
-/* .add-restaurant-btn {
-	margin-left: 20px;
-	border-radius: 25px;
-} */
 
 .auth__form-title {
 	text-align: center;
