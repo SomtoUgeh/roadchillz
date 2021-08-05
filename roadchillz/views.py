@@ -93,7 +93,7 @@ def register(request):
 
             if 'picture' in request.FILES:
                 profile.picture = request.FILES['picture']
-            
+
             profile.save()
             registered = True
         else:
@@ -101,10 +101,9 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
-    
+
     return render(request, 'roadchillz/register.html', context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
-@login_required
 def user_logout(request):
     logout(request)
     return redirect(reverse('roadchillz:index'))
