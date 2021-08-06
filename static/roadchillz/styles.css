@@ -727,7 +727,7 @@ button {
 }
 
 .single__restaurant-image {
-	width: 100%;
+	width: 400px;
 	margin: 1rem 0 0;
 	border-radius: 0.5rem;
 }
@@ -819,6 +819,11 @@ button {
 	height: 100%;
 }
 
+#restaurant-map {
+	height: 400px;
+	width: 400px;
+}
+
 .stretch-btn {
 	display: block;
 	width: 100%;
@@ -832,4 +837,27 @@ button {
 .submitted a,
 .submitted strong {
 	display: block;
+}
+
+.item-block {
+	border: orange solid thin;
+	border-radius: 15px;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.item-block > .item-price {
+	float:right;
+}
+.restaurant-hours {
+	margin: 10px 0;
+}
+.restaurant-hours > .timing-block {
+	color: #f5a91c;
+	padding: 10px 0;
+	font-weight: bold;
+}
+
+.area-name {
+	margin: 10px 0;
 }

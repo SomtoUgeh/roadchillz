@@ -51,7 +51,9 @@ def single_restaurant(request, restaurant_name_slug):
 
     try:
         restaurant = Restaurant.objects.get(slug=restaurant_name_slug)
+        items = Item.objects.filter(restaurant=restaurant)
         context_dict['restaurant'] = restaurant
+        context_dict['items'] = items
     except Restaurant.DoesNotExist:
         context_dict['restaurant'] = None
 
