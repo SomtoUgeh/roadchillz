@@ -39,10 +39,10 @@ class AddRestaurantForm(forms.ModelForm):
     )
 
     location_name = forms.CharField(
-            label = 'Street/Area Name',
-            max_length=Restaurant.NAME_MAX_LENGTH,
-            widget=forms.TextInput(attrs={'class':'form-control'})
-        )
+        label = 'Street/Area Name',
+        max_length=Restaurant.NAME_MAX_LENGTH,
+        widget=forms.TextInput(attrs={'class':'form-control'})
+    )
     
     class Meta:
         model = Restaurant
