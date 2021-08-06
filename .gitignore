@@ -5,4 +5,4 @@ __pycache__/
 .idea/
 .DS_Store
 roadchillz/migrations/
-media/profile_images/
+media/
