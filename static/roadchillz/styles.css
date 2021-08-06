@@ -848,7 +848,7 @@ button {
 }
 
 .item-block > .item-price {
-	float:right;
+	float: right;
 }
 .restaurant-hours {
 	margin: 10px 0;
@@ -865,4 +865,15 @@ button {
 
 #add_restaurant_form {
 	padding-bottom: 30px;
+}
+
+.single__restaurant-heading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+.single__restaurant-likes a {
+	padding-left: 1rem;
 }

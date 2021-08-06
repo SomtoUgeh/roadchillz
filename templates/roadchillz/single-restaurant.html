@@ -2,16 +2,37 @@
 {% load static %}
 
 {% block title_block %}
-	RoadChillz | Single Restaurant
+	RoadChillz | {{ restaurant.name | title }}
 {% endblock %}
 
 {% block body_block %}
 <main>
 	<section class="single__restaurant">
 		<div class="restaurants">
-			<div>
-				<h1>{{restaurant.name | title}}</h1>
-				<p class="restaurant-hours"><span class="timing-block">Open Hours : {{ restaurant.open_time | time:"h:i A" }} - {{ restaurant.close_time | time:"h:i A" }}</span></p>
+			<div class='single__restaurant-heading'>
+				<div>
+					<h1>{{restaurant.name | title}}</h1>
+					<p class="restaurant-hours"><span class="timing-block">Open Hours : {{ restaurant.open_time | time:"h:i A" }} - {{ restaurant.close_time | time:"h:i A" }}</span></p>
+				</div>
+
+				<div class='single__restaurant-likes'>
+					<strong id="like_count">{{ restaurant.likes }}</strong>
+						{% if restaurant.likes > 1 %}
+									({{ restaurant.likes }} likes)
+						{% elif restaurant.likes == 1 %}
+								({{ restaurant.likes}} likes)
+						{% endif %}
+
+					{% if user.is_authenticated %}
+						<button
+							id="like_btn"
+							type="button"
+							class="btn btn-primary btn-sm"
+							data-restaurantid="{{ restaurant.id }}"
+						>
+						<span data-feather="thumbs-up"></span>Like Restaurant</button>
+					{% endif %}
+				</div>
 			</div>
 
 			<img
@@ -39,12 +60,16 @@
 		</div>
 	</section>
 </main>
+
 <script type="text/javascript">
-	setTimeout(function() { 
+	setTimeout(function() {
 		let map;
+
 		lat = parseFloat($('#restaurant-map').attr('data-attr-lat'));
 		long = parseFloat($('#restaurant-map').attr('data-attr-long'))
+
 		const restaurantLoc = { lat: lat, lng: long };
+
 		map = new google.maps.Map(document.getElementById("restaurant-map"), {
 			center: restaurantLoc,
 			zoom: 14,
@@ -55,5 +80,5 @@
 			map: map,
 		})
 	}, 1000);
- </script>
+</script>
 {% endblock %}

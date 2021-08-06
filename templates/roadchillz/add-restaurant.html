@@ -17,10 +17,10 @@
 
 					<div>
 						<form
+							method="post"
 							class="form-group"
 							id="add_restaurant_form"
-							method="post"
-                            enctype="multipart/form-data"
+              enctype="multipart/form-data"
 							action="{% url 'roadchillz:add_restaurant' %}"
 						>
 							{% csrf_token %}
@@ -35,11 +35,12 @@
 							{% endfor %}
 
 							{{ form.media }}
-                            <input type="file" name="myfile" class="form-control">
-                            {% if uploaded_file_url %}
-                                <p>File uploaded</p>
-                                <input type="hidden" name="image_url" value="{{uploaded_file_url}}">
-                            {% endif %}
+							<input type="file" name="myfile" class="form-control">
+							{% if uploaded_file_url %}
+									<p>File uploaded</p>
+									<input type="hidden" name="image_url" value="{{uploaded_file_url}}">
+							{% endif %}
+
 							<div id="map"></div>
 
 							<div>
@@ -65,12 +66,15 @@
 		</div>
 	</section>
 </main>
+
 <script type="text/javascript">
-	setTimeout(function() { 
+	setTimeout(function() {
 		let map;
 		// lat = parseFloat($('#restaurant-map').attr('data-attr-lat'));
 		// long = parseFloat($('#restaurant-map').attr('data-attr-long'))
+
 		const restaurantLoc = { lat: 55.8642, lng: -4.2518 };
+
 		map = new google.maps.Map(document.getElementById("map"), {
 			center: restaurantLoc,
 			zoom: 14,
@@ -84,8 +88,8 @@
             map: map,
         })
 
-        google.maps.event.addListener(map, "click", function (e) { 
-            console.log("Click"); 
+        google.maps.event.addListener(map, "click", function (e) {
+            console.log("Click");
             console.log(e)
             $("#location-long").val(e.latLng.lng());
             $("#location-lat").val(e.latLng.lat());
@@ -95,7 +99,6 @@
         function setMarker(location, map) {
             marker.setPosition(location);
         }
-
 	}, 1000);
  </script>
 {% endblock %}
