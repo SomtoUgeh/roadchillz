@@ -82,7 +82,6 @@ def add_restaurant(request):
         uploaded_file_url = fs.url(filename)
         form = AddRestaurantForm(request.POST)
         if form.is_valid():
-            print('uplo url:', uploaded_file_url)
             form.cleaned_data['image_url'] = uploaded_file_url
             form.save(commit=True)
 
@@ -146,3 +145,20 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect(reverse('roadchillz:index'))
+
+
+@login_required
+def like_restaurant(request):
+    restaurant_id = request.GET['restaurant_id']
+
+    try:
+        restaurant = Restaurant.objects.get(id=int(restaurant_id))
+    except Restaurant.DoesNotExist:
+        return HttpResponse(-1)
+    except ValueError:
+        return HttpResponse(-1)
+
+    restaurant.likes = restaurant.likes + 1
+    restaurant.save()
+
+    return HttpResponse(restaurant.likes)

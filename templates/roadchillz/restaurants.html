@@ -11,7 +11,7 @@
 
   <section class="restaurants">
     <div class="restaurants__heading">
-      <h2>Restaurants -</h2>
+      <h2>{{ category.name | title }}</h2>
       <a href="{% url 'roadchillz:categories' %}">View Categories →</a>
     </div>
 
@@ -24,7 +24,15 @@
 							<div class="restaurants__item__details">
 								<div class="restaurants__item__details-group">
 									<p class="restaurants__item-type">{{ r.category }}</p>
-									<p class="restaurants__item-rating">{{ r.likes }}</p>
+									<div class="stats">
+										<img
+											src="{% static 'images/star.jpg' %}"
+											alt="star"
+											class="star"
+										/>
+
+										<p class="restaurants__item-rating">{{ r.likes }}</p>
+									</div>
 								</div>
 
 								<div>
