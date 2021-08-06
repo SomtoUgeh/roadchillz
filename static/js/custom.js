@@ -13,8 +13,8 @@ $(document).ready(function () {
 		let restaurantId;
 		restaurantId = $(this).attr('data-restaurantid');
 
-		$.get(
-			'/roadchillz/like_category/',
+		jQuery.get(
+			'/roadchillz/restaurants/like_restaurant/',
 			{ restaurant_id: restaurantId },
 			function (data) {
 				$('#like_count').html(data);
