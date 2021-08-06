@@ -1,7 +1,7 @@
 asgiref==3.4.1
 bcrypt==3.2.0
 cffi==1.14.6
-Django==2.1.5
+Django==2.2.24
 Pillow==8.2.0
 pycparser==2.20
 pytz==2021.1
