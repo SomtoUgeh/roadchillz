@@ -41,7 +41,6 @@
 </main>
 <script type="text/javascript">
 	setTimeout(function() { 
-		// Mock async call to load
 		let map;
 		lat = parseFloat($('#restaurant-map').attr('data-attr-lat'));
 		long = parseFloat($('#restaurant-map').attr('data-attr-long'))
@@ -51,7 +50,6 @@
 			zoom: 14,
 		});
 
-		// The marker, positioned at Uluru
 		const marker = new google.maps.Marker({
 			position: restaurantLoc,
 			map: map,
