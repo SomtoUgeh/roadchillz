@@ -82,9 +82,10 @@ def add_restaurant(request):
         uploaded_file_url = fs.url(filename)
         form = AddRestaurantForm(request.POST)
         if form.is_valid():
-            form.cleaned_data['image_url'] = uploaded_file_url
             form.save(commit=True)
-
+            restaurant = Restaurant.objects.get(name=request.POST['name'])
+            restaurant.image_url = uploaded_file_url
+            restaurant.save()
             # check and save items
             return redirect(reverse('roadchillz:index'))
         else:
