@@ -12,25 +12,31 @@
 			<div class='single__restaurant-heading'>
 				<div>
 					<h1>{{restaurant.name | title}}</h1>
-					<p class="restaurant-hours"><span class="timing-block">Open Hours : {{ restaurant.open_time | time:"h:i A" }} - {{ restaurant.close_time | time:"h:i A" }}</span></p>
+					<p class="restaurant-hours">
+						<span class="timing-block">
+							Open Hours : {{ restaurant.open_time | time:"h:i A" }} - {{ restaurant.close_time | time:"h:i A" }}
+							</span>
+						</p>
 				</div>
 
 				<div class='single__restaurant-likes'>
+					<img src="{% static 'images/star.jpg' %}" alt="star" class="star" />
 					<strong id="like_count">{{ restaurant.likes }}</strong>
 						{% if restaurant.likes > 1 %}
-									({{ restaurant.likes }} likes)
-						{% elif restaurant.likes == 1 %}
-								({{ restaurant.likes}} likes)
+							likes
+						{% else %}
+							like
 						{% endif %}
 
 					{% if user.is_authenticated %}
 						<button
 							id="like_btn"
 							type="button"
-							class="btn btn-primary btn-sm"
+							class="btn btn-sm btn-outline-warning"
 							data-restaurantid="{{ restaurant.id }}"
 						>
-						<span data-feather="thumbs-up"></span>Like Restaurant</button>
+							Like Restaurant
+						</button>
 					{% endif %}
 				</div>
 			</div>
@@ -45,7 +51,7 @@
 				<h5>Recommended Items: </h5>
 				{% if items %}
 					{% for i in items %}
-						<p class="item-block"><span class="item-title">{{i.name | title}}</span> <span class="item-price">£ {{i.price}}</span></p>
+						<p class="item-block"><span class="item-title">{{ i.name | title }}</span> <span class="item-price">£ {{ i.price }}</span></p>
 					{% endfor %}
 				{% else %}
 					<strong>No menu items available</strong>
@@ -53,9 +59,8 @@
 			</div>
 
 			<div class="single__restaurant__location">
-				<h5>Location:</h5>
-				<p class="area-name">{{restaurant.location_name | title}}</p>
-				<div id="restaurant-map" data-attr-lat="{{restaurant.lat}}" data-attr-long="{{restaurant.long}}"></div>
+				<h5>Location: <span class="area-name">{{ restaurant.location_name | title }}</span></h5>
+				<div id="restaurant-map" data-attr-lat="{{ restaurant.lat }}" data-attr-long="{{ restaurant.long }}"></div>
 			</div>
 		</div>
 	</section>

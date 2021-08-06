@@ -548,6 +548,12 @@ section.single__restaurant {
 	font-weight: bold;
 }
 
+.restaurants__item-rating img {
+	display: inline-block;
+	height: 14px;
+	margin-right: 4px;
+}
+
 .restaurants__item-name,
 .restaurants__item-location {
 	padding-top: 0.35rem;
@@ -727,9 +733,12 @@ button {
 }
 
 .single__restaurant-image {
-	width: 400px;
 	margin: 1rem 0 0;
 	border-radius: 0.5rem;
+	height: 400px;
+	width: 100%;
+	object-fit: cover;
+	background-position: center;
 }
 
 .single__restaurant-description {
@@ -739,7 +748,6 @@ button {
 
 .single__restaurant__location {
 	padding: 1rem 0 3rem;
-	border-bottom: 1px solid #dddddd;
 }
 
 .single__restaurant__location h2 {
@@ -822,7 +830,7 @@ button {
 
 #restaurant-map {
 	height: 400px;
-	width: 400px;
+	width: 100%;
 }
 
 .stretch-btn {
@@ -858,9 +866,8 @@ button {
 	padding: 10px 0;
 	font-weight: bold;
 }
-
 .area-name {
-	margin: 10px 0;
+	display: inline-block;
 }
 
 #add_restaurant_form {
@@ -873,7 +880,19 @@ button {
 	align-items: center;
 }
 
-
 .single__restaurant-likes a {
 	padding-left: 1rem;
+}
+
+.star {
+	height: 14px;
+}
+
+.stats {
+	display: flex;
+}
+
+.stats img {
+	height: 16px;
+	margin-right: 5px;
 }
