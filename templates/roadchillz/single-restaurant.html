@@ -10,68 +10,52 @@
 	<section class="single__restaurant">
 		<div class="restaurants">
 			<div>
-				<h1>Restaurants</h1>
-				<p>San Francisco California, United States</p>
+				<h1>{{restaurant.name | title}}</h1>
+				<p class="restaurant-hours"><span class="timing-block">Open Hours : {{ restaurant.open_time | time:"h:i A" }} - {{ restaurant.close_time | time:"h:i A" }}</span></p>
 			</div>
 
 			<img
-				src="{% static 'images/hero.jpg' %}"
-				alt="RoadChillz Logo"
+				src="{{ restaurant.image_url }}"
+				alt="Restaurant Image"
 				class="single__restaurant-image"
 			/>
 
-			<p class="single__restaurant-description">
-				Our office space sits on four floors of a 34-story office building on
-				the northwestern edge of Lafayette, New York. This modern high-rise is a
-				an icon in the Empire State. Discover private offices, hot desks, and
-				shared spaces for a community of innovative professionals. Parking and
-				bike storage are available in our basement, but most members can easily
-				walk to work. Marengo On the Alley is a popular nearby lunch spot, and
-				Kearny Street is home to plenty of other restaurants and watering holes
-				for the after-work hours. Elevate your business in this lively
-				neighborhood.
-			</p>
-
-			<div class="single__restaurant__location">
-				<h2>Location</h2>
-				<div class="single__restaurant__map-container">
-					<img src="{% static 'images/map.jpg' %}" alt="RoadChillz Logo" />
-				</div>
+			<div class="single__restaurant-description">
+				<h5>Recommended Items: </h5>
+				{% if items %}
+					{% for i in items %}
+						<p class="item-block"><span class="item-title">{{i.name | title}}</span> <span class="item-price">£ {{i.price}}</span></p>
+					{% endfor %}
+				{% else %}
+					<strong>No menu items available</strong>
+				{% endif %}
 			</div>
 
-			<div class="single__restaurant-review">
-				<div class="single__restaurant-review-title">
-					<h2>4.92 - 12 Reviews</h2>
-					<button>Add a review</button>
-				</div>
-
-				<div class="reviews">
-					<div class="review">
-						<p class="review-name">Rick</p>
-						<p class="review-date">August 2022</p>
-
-						<p class="review-text">
-							Over the years, I've had lots of great experiences staying at
-							various locations all over the world. This is a great place with
-							lots of restaurants and amenities within walking distance. I would
-							definitely stay here again!
-						</p>
-					</div>
-
-					<div class="review">
-						<p class="review-name">Rick</p>
-						<p class="review-date">August 2022</p>
-
-						<p class="review-text">
-							Over the years, I've had lots of great experiences staying at
-							various locations all over the world. This is a great place with
-							lots of restaurants and amenities within walking distance. I would
-							definitely stay here again!
-						</p>
-					</div>
-				</div>
+			<div class="single__restaurant__location">
+				<h5>Location:</h5>
+				<p class="area-name">{{restaurant.location_name | title}}</p>
+				<div id="restaurant-map" data-attr-lat="{{restaurant.lat}}" data-attr-long="{{restaurant.long}}"></div>
 			</div>
 		</div>
 	</section>
 </main>
+<script type="text/javascript">
+	setTimeout(function() { 
+		// Mock async call to load
+		let map;
+		lat = parseFloat($('#restaurant-map').attr('data-attr-lat'));
+		long = parseFloat($('#restaurant-map').attr('data-attr-long'))
+		const restaurantLoc = { lat: lat, lng: long };
+		map = new google.maps.Map(document.getElementById("restaurant-map"), {
+			center: restaurantLoc,
+			zoom: 14,
+		});
+
+		// The marker, positioned at Uluru
+		const marker = new google.maps.Marker({
+			position: restaurantLoc,
+			map: map,
+		})
+	}, 1000);
+ </script>
 {% endblock %}
