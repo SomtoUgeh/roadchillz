@@ -11,7 +11,11 @@ class AddRestaurantForm(forms.ModelForm):
 
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     likes = forms.IntegerField(widget=forms.HiddenInput(), required=False)
-    image_url = forms.CharField(widget=forms.HiddenInput(), required=False)
+    image_url = forms.CharField(
+        widget=forms.HiddenInput(), 
+        required=False,
+        initial='/static/images/restaurant.jpg'
+    )
     long = forms.CharField(
         widget=forms.HiddenInput(attrs={'id':'location-long'}), initial='100')
     lat = forms.CharField(
