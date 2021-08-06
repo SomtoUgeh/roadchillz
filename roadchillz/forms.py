@@ -11,36 +11,38 @@ class AddRestaurantForm(forms.ModelForm):
 
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     likes = forms.IntegerField(widget=forms.HiddenInput(), required=False)
-
-    long = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    lat = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    location_name = forms.CharField(widget=forms.HiddenInput(), required=False)
-    open_time = forms.DateField(
+    image_url = forms.CharField(widget=forms.HiddenInput(), required=False)
+    long = forms.CharField(
+        widget=forms.HiddenInput(attrs={'id':'location-long'}), initial='100')
+    lat = forms.CharField(
+        widget=forms.HiddenInput(attrs={'id':'location-lat'}), initial='100')
+    open_time = forms.CharField(
         label = 'Open Time',
         widget=forms.DateInput(attrs={'class':'form-control timepicker'}))
-    close_time = forms.DateField(
+    close_time = forms.CharField(
         label = 'Close Time',
         widget=forms.DateInput(attrs={'class':'form-control timepicker'}))
-    category = forms.CharField(
-        label = 'Category',
-        widget = forms.Select( attrs = {'class':'form-control'},
-                choices= [
-                    ('', 'Select')
-                ]
-            )
-        )
-    cuisines = forms.CharField(
-        label = 'Cuisines',
-        widget = forms.Select( attrs = {'class':'form-control'},
-                choices= [
-                    ('', 'Select')
-                ]
-            )
-        )
 
+    category = forms.ModelChoiceField(
+        empty_label='Select',
+        queryset=Category.objects.all().order_by('name'),
+        widget = forms.Select( attrs = {'class':'form-control'}),
+    )
+
+    cuisine = forms.ModelChoiceField(
+        queryset=Cuisine.objects.all().order_by('name'),
+        widget = forms.Select( attrs = {'class':'form-control'}),
+    )
+
+    location_name = forms.CharField(
+            label = 'Street/Area Name',
+            max_length=Restaurant.NAME_MAX_LENGTH,
+            widget=forms.TextInput(attrs={'class':'form-control'})
+        )
+    
     class Meta:
         model = Restaurant
-        fields = ('name','open_time',)
+        fields = ('name','open_time', 'close_time', 'long', 'lat', 'category', 'location_name', 'image_url')
 
 
 class UserForm(forms.ModelForm):

@@ -1,4 +1,4 @@
-from roadchillz.models import Restaurant
+from roadchillz.models import Cuisine, Restaurant
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from roadchillz.models import Restaurant, Category, Item
@@ -7,6 +7,7 @@ from django.urls import reverse
 from roadchillz.forms import AddRestaurantForm
 from roadchillz.forms import UserForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
 
 def index(request):
     context_dict = {}
@@ -64,15 +65,32 @@ def single_restaurant(request, restaurant_name_slug):
 @login_required
 def add_restaurant(request):
     form = AddRestaurantForm()
+    context_dict = {}
+    try:
+        category = Category.objects.all()
+        cuisines = Cuisine.objects.all()
+        context_dict['category'] = category
+        context_dict['cuisines'] = cuisines
+    except:
+        context_dict['category'] = None
+        context_dict['cuisines'] = None
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
         form = AddRestaurantForm(request.POST)
         if form.is_valid():
+            print('uplo url:', uploaded_file_url)
+            form.cleaned_data['image_url'] = uploaded_file_url
             form.save(commit=True)
+
+            # check and save items
             return redirect(reverse('roadchillz:index'))
         else:
             print(form.errors)
-    return render(request, 'roadchillz/add-restaurant.html', {'form': form})
+    return render(request, 'roadchillz/add-restaurant.html', {'form': form, 'context': context_dict})
 
 
 def signup(request):

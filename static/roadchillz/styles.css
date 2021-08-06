@@ -812,6 +812,7 @@ button {
 }
 
 .add-item-btn {
+	margin: 10px 0;
 	float: right;
 }
 
@@ -860,4 +861,8 @@ button {
 
 .area-name {
 	margin: 10px 0;
+}
+
+#add_restaurant_form {
+	padding-bottom: 30px;
 }
